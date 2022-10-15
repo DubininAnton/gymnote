@@ -1,0 +1,141 @@
+form {
+    width: 500px;
+    margin: 40px auto;
+
+}
+.input {
+    &__all {
+        width: 500px;
+        min-height: 150px;
+        position: relative;
+    }
+    &__block {
+        margin-bottom: 10px;
+    }
+    &__wrapper {
+        display: flex;
+        width: 500px;
+        justify-content: stretch;
+        margin-bottom: 10px;
+
+    }
+    &__date {
+        margin-right: 10px;
+        height: 30px;
+    }
+    &__exercise {
+        height: 30px;
+        min-width: 355px;
+    }
+    &__repetitions {
+        width: 57px;
+        height: 30px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    &__weight {
+        width: 57px;
+        height: 30px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+    &__physicalManagement {
+        display: flex;
+        margin: 0 10px 0 5px;
+        overflow-x: auto;
+        width: 375px;
+    }
+    &__row {
+        display: flex;
+        justify-content: end;
+        overflow-x: auto;
+    }
+    &__btn {
+        width: 490px;
+        height: 36px;
+        margin-top: 10px;
+        &:hover {
+            cursor: pointer
+        }
+    }
+    &__deleteApproach {
+        margin-left: 5px;
+        width: 90px;
+        height: 36px;
+        border: 0.1px solid black;
+        border-width: 0.1;
+        background-color: #f0f0f0;
+        &:hover {
+            cursor: pointer
+        }
+        font-size: 14px;
+    }
+}
+.wrapperInputBlock {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 100px;
+}
+.wrapper {
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+}
+
+.beforePhysicalManagement__row {
+    display: flex;
+    justify-content: start;
+    min-width: 500px;
+    overflow-x: auto;
+
+}
+.beforePhysicalManagement {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+.beforePhysicalManagement__date {
+    display: flex;
+    min-width: 116px;
+    height: 36px;
+    border: 0.5px solid gray;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.beforePhysicalManagement__info {
+    min-width: 242px;
+    overflow-x: auto;
+    display: flex;
+}
+.beforePhysicalManagement__approach {
+    display: flex;
+    min-width: 65px;
+    height: 36px;
+    border: 0.5px solid gray;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.beforePhysicalManagement__weight {
+    display: flex;
+    min-width: 65px;
+    height: 36px;
+    border: 0.5px solid gray;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-bottom: 10px;
+
+}
+.emptyCell {
+    min-width: 118px;
+}

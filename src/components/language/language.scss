@@ -1,0 +1,106 @@
+.container {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    margin: 300px auto;
+}
+
+#chooseLanguage {
+    border: none;
+    font-size: 20px;
+    font-weight: normal;
+    width: 350px;
+    height: 50px;
+}
+
+.myLanguage {
+    position: relative;
+    transition: all .3s;
+    &__title {
+        position: absolute;
+        top: 0;
+        left: -175px;
+        width: 350px;
+        height: 50px;
+        border: 1px solid black;
+        margin: auto;
+        border-radius: 7px;
+        transition: all .3s;
+        z-index: 100;
+        background: #f7f7f7;
+        line-height: 50px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    &__russian {
+        position: absolute;
+        top: 5px;
+        left: -175px;
+        width: 350px;
+        height: 50px;
+        border: 1px solid black;
+        margin: auto;
+        border-radius: 7px;
+        transition: all .3s;
+        line-height: 50px;
+        z-index: 0;
+    }
+    &__russian_open {
+        position: absolute;
+        top: 55px;
+        left: -175px;
+        width: 350px;
+        height: 50px;
+        border: 1px solid black;
+        margin: auto;
+        border-radius: 7px;
+        transition: all .3s;
+        z-index: 0;
+        &:hover {
+            cursor: pointer;
+            background: rgb(247,247,247);
+            background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(247,247,247,1) 31%, rgba(200,198,198,1) 100%);
+        }
+    }
+    &__english {
+        position: absolute;
+        top: 10px;
+        left: -175px;
+        width: 350px;
+        height: 50px;
+        border: 1px solid black;
+        margin: auto;
+        border-radius: 7px;
+        transition: all .3s;
+        line-height: 50px;
+        z-index: 0;
+    }
+    &__english_open {
+        position: absolute;
+        top: 115px;
+        left: -175px;
+        width: 350px;
+        height: 50px;
+        border: 1px solid black;
+        margin: auto;
+        border-radius: 7px;
+        transition: all .3s;
+        z-index: 0;
+        &:hover {
+            cursor: pointer;
+            background: rgb(247,247,247);
+            background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(247,247,247,1) 31%, rgba(200,198,198,1) 100%);
+        }
+    }
+
+}
+
+.myLanguage__title_active {
+    transform: rotateX(35deg);
+    background: rgb(247,247,247);
+    background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(247,247,247,1) 31%, rgba(200,198,198,1) 100%);
+}
+
+
