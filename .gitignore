@@ -1,6 +1,5 @@
 node_modules
 coverage
-.env
 .env.mongoDBserver
 *.log
 logs
