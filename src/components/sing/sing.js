@@ -7,16 +7,21 @@ import {Link} from "react-router-dom";
 import * as Yup from 'yup';
 import { russianText } from '../exerciseTable/exerciseTableSlice';
 import { englishText } from '../exerciseTable/exerciseTableSlice';
-import {changeSingOrExercise, setName} from "./singSlice";
+import {changeSignInOrSignUp, user, changeSingOrExercise } from "../sing/singSlice";
+import {textModalWindow, showModalWindow} from "../modalWindows/modalWindowsSlice"
+import {registration} from "../service/AuthServise.ts";
+import { login } from "../service/AuthServise.ts";
+import { exercise} from '../service/ExerciseService.ts';
+
+// import {changeSingOrExercise, setName} from "./singSlice";
 import "./sing.scss";
 
 /* Функция на основе выбранного языка пользователем формирует либо русский либо английский язык интерфейса */
 const Sing = () => {
     /* Используется для функции openClosePassword для скрытия или показа пароля*/
     const [openClosePassord, setOpenClosePassord] = useState("password"); 
-    /* Используется для переключения между инпутами регистрации (строка sing) и ввода данных по упражнениям (строка exerciseInput) */
-    // const [singOrPhysicalManagement, setSingOrPhysicalManagement] = useState("sing") 
     const lang = useSelector(state=> state.language.language); /* Селектор выбранного пользователем языка */
+    const signInOrSignUp = useSelector(state => state.sing.signInOrSignUp) /* Селектор выбора регистрации или входа в аккаунт */
     const dispatch = useDispatch();
     
     let text={};
@@ -39,17 +44,80 @@ const Sing = () => {
             }
         }
     /* Функция отправки данных пользователя при регистрации или при входе в аккаунт */
-        const getDataUser = (values) => {
-            dispatch(getDataUser(values))
-                .then((responce) => {dispatch(changeSingOrExercise("exerciseInput")); dispatch(setName(responce.data.name))}) /* Если все норм переключаемся на окно ввода упражнений */
-                .catch(()=>{})
-                .finally(()=>{})
+        const getDataUser = (payload) => {
+            switch (signInOrSignUp) {
+                case true:
+                        try {
+                           registration(payload.email, payload.password)
+                                .then(response => {
+                                    if(response.status === 200) {
+                                        dispatch(textModalWindow(text.registrationAccount))
+                                        dispatch(showModalWindow(true))
+                                        dispatch(changeSingOrExercise("exerciseInput"))
+                                        dispatch(user(response.data.user))
+                                        localStorage.setItem('token', response.data.accessToken)
+                                        exercise(response.data.user.email)
+                                    }
+                                })
+                                .catch(error => {
+                                    dispatch(textModalWindow(error.response?.data?.message))
+                                    dispatch(showModalWindow(true))
+                                    console.log(error.response?.data?.message)
+                                })
+                        } catch (error) {
+                            console.log(error.response?.data?.message)
+                        }
+                    
+                        
+                break;
+                case false:
+                    try {
+                        login(payload.email, payload.password)
+                            .then(response => {
+                                if(response.status === 200) {
+                                    dispatch(textModalWindow(text.enterAccount))
+                                    dispatch(showModalWindow(true))
+                                    dispatch(changeSingOrExercise("exerciseInput"))
+                                    dispatch(user(response.data.user))
+                                    localStorage.setItem('token', response.data.accessToken)
+                                } else {
+                                    console.log(response.data.message)
+                                }
+                            })
+                            .catch(error => {
+                                dispatch(textModalWindow(error.response?.data?.message))
+                                dispatch(showModalWindow(true))
+                                console.log(error.response?.data?.message)
+                            })
+                            
+                    } catch (error) {
+                        console.log(error.response?.data?.message)
+                        console.log(error)
+                    }
+                
+                    
+                break;
+            
+                default:
+                    break;
+            }
+        }
+
+        /* Функция переключения регистрации или входа в аккаунт */
+        const change = () => {
+            if(signInOrSignUp) {
+                dispatch(changeSignInOrSignUp(false))
+            } 
+            if(signInOrSignUp === false) {
+                dispatch(changeSignInOrSignUp(true))
+            }
+            
         }
 
     return (
         <>
         <Formik
-            initialValues={{ name: "", email: '', password: '' }}
+            initialValues={{ email: '', password: '' }}
             validationSchema={Yup.object({
                 name: Yup.string().min(2,`${text.nameMin}`),
                 email: Yup.string().email(`${text.errorEmail}`).required(`${text.required}`),
@@ -58,7 +126,6 @@ const Sing = () => {
             onSubmit={(values, { setSubmitting }) => {
                 getDataUser(values)
                 setTimeout(() => {
-                // alert(JSON.stringify(values, null, 2));
                 setSubmitting(false);
                 }, 400);
         
@@ -68,9 +135,8 @@ const Sing = () => {
             <Form className='singForm'>
                 <div className="nameWrapper">
                     <Link to="/"><div className="input__cross"></div></Link>
-                    <MyTextField type="text" name="name" classNameInput="input__name" placeholder={`${text.name}`}/>
+                    <div onClick={()=>change()} className="changeSignUpOrSignIn">{signInOrSignUp ? `${text.signUp}` : `${text.signIn}`}</div>
                 </div>
-                <ErrorMessage name="name" component="div" />
                 <MyTextField type="email" name="email" classNameInput="input__email" placeholder={`${text.email}`}/>
                 <ErrorMessage name="email" component="div" />
                 <div className="input__passwordWrapper">

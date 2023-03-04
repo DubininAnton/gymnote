@@ -13,18 +13,21 @@ form {
     width: 100%;
     height: 50px;
     border-radius: 7px;
+
 }
 
 .input__name {
     width: 100%;
     height: 50px;
     border-radius: 7px;
+
 }
 
 .input__password {
     width: 100%;
     height: 50px;
     border-radius: 7px;
+
 }
 
 .input__btn {
@@ -51,7 +54,7 @@ form {
     height: 25px;
     position: absolute;
     top: 15px;
-    right: 0px;
+    right: 10px;
     cursor: pointer;
 }
 
@@ -135,15 +138,17 @@ form {
     }
     &__plusExercise {
         margin-left: 5px;
+        line-height: 1;
     }
     &__plusApproach {
         margin-left: 5px;
         margin-bottom: 10px;
-        width: 90px;
+        width: 100px;
         height: 36px;
         border: 0.1px solid black;
         border-width: 0.1;
         background-color: #f0f0f0;
+        line-height: 1;
         &:hover {
             cursor: pointer
         }
@@ -152,15 +157,31 @@ form {
     &__deleteExercise {
         margin-left: 5px;
         margin-bottom: 10px;
-        width: 90px;
+        width: 100px;
         height: 36px;
         border: 0.1px solid black;
         border-width: 0.1;
         background-color: #f0f0f0;
+        line-height: 1;
         &:hover {
             cursor: pointer
         }
         font-size: 14px;
     }
    
+}
+
+/* Кнопка регистраии и входа в аккаунт */
+.changeSignUpOrSignIn {
+    width: 200px;
+    height: 35px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    border: solid 0.3px black;
+    &:hover {
+        cursor: pointer;
+    }
 }

@@ -1,19 +1,9 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import {useHttp} from "../../hooks/http.hook";
-
-
-/* Функция отправки данных при регистрации или при входе в аккаунт */
-export const getDataUser = createAsyncThunk(
-    "sing/getDataUser",
-    (payload)=>{
-        const {request} = useHttp();
-        return request ("url", "POST", payload)
-    }
-)
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     singOrExercise:"sing", /* exerciseInput устанавливается при входе в аккаунт */
-    userName:""
+    signInOrSignUp: true,
+    user:""
 }
 
 const singSlice = createSlice({
@@ -23,13 +13,18 @@ const singSlice = createSlice({
         changeSingOrExercise: (state, action) => {
             state.singOrExercise = action.payload;
         },
-        setName: (state, action) => {
-            state.userName = action.payload;
+        user: (state, action) => {
+            state.user = action.payload
+        },
+        
+        changeSignInOrSignUp: (state, action) => {
+            state.signInOrSignUp = action.payload
         }
     }
+
 })
 
 const {reducer, actions} = singSlice;
 
 export default reducer;
-export const {changeSingOrExercise, setName} = actions;
+export const {changeSingOrExercise, user, changeSignInOrSignUp} = actions;

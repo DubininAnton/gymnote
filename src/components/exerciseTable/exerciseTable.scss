@@ -1,7 +1,11 @@
 form {
     width: 500px;
-    margin: 40px auto;
+    margin: 70px auto;
 
+}
+.mainWrapper {
+    display: grid;
+    grid-template-rows: 300px 500px;
 }
 .input {
     &__all {
@@ -28,15 +32,15 @@ form {
         min-width: 355px;
     }
     &__repetitions {
-        width: 57px;
-        height: 30px;
+        width: 65px;
+        height: 36px;
         margin-left: 10px;
         margin-bottom: 10px;
         text-align: center;
     }
     &__weight {
-        width: 57px;
-        height: 30px;
+        width: 65px;
+        height: 36px;
         margin-left: 10px;
         margin-bottom: 10px;
     }
@@ -45,6 +49,7 @@ form {
         margin: 0 10px 0 5px;
         overflow-x: auto;
         width: 375px;
+        padding-left: 20px;
     }
     &__row {
         display: flex;
@@ -61,11 +66,12 @@ form {
     }
     &__deleteApproach {
         margin-left: 5px;
-        width: 90px;
+        width: 100px;
         height: 36px;
         border: 0.1px solid black;
         border-width: 0.1;
         background-color: #f0f0f0;
+        line-height: 1;
         &:hover {
             cursor: pointer
         }
@@ -74,7 +80,6 @@ form {
 }
 .wrapperInputBlock {
     display: flex;
-    position: fixed;
     bottom: 0;
     margin-bottom: 100px;
 }
@@ -94,16 +99,13 @@ form {
 
 }
 .beforePhysicalManagement {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
-    margin-bottom: 10px;
+    overflow: auto;
+    margin: 0 auto;
+    
 }
 .beforePhysicalManagement__date {
     display: flex;
-    min-width: 116px;
+    min-width: 132px;
     height: 36px;
     border: 0.5px solid gray;
     justify-content: center;
@@ -137,5 +139,5 @@ form {
 
 }
 .emptyCell {
-    min-width: 118px;
+    min-width: 134px;
 }
